@@ -9,3 +9,7 @@ and dungeons to explore and conquer!
 ## Details
 The game is made using Unity3d and is a culmination of programming and game design techinques learned
 in the the course leading up to the final project.
+
+## Required Assets
+As of now uses:
+Height Mapped Terrain Textures
