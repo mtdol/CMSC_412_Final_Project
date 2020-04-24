@@ -10,6 +10,7 @@ and dungeons to explore and conquer!
 The game is made using Unity3d and is a culmination of programming and game design techinques learned
 in the the course leading up to the final project.
 
-## Required Assets
-As of now uses:
-Height Mapped Terrain Textures
+## Required Assets For Development
+Free SpeedTrees
+Standard assets 2017 -> Environment Folder
+
