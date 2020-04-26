@@ -13,4 +13,3 @@ in the the course leading up to the final project.
 ## Required Assets For Development
 1. Free SpeedTrees
 2. Terrain Tools Sample Asset Pack
-3. Grass And Flowers Pack 1
