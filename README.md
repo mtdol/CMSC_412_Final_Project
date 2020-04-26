@@ -11,5 +11,7 @@ The game is made using Unity3d and is a culmination of programming and game desi
 in the the course leading up to the final project.
 
 ## Required Assets For Development
+as of now:
 1. Free SpeedTrees
 2. Terrain Tools Sample Asset Pack
+3. Unity standard assets 2017
