@@ -1,0 +1,10 @@
+some body on youtube recomended:
+terrain.party
+to find heightmaps from real world locations
+
+tips on heightmaps and terrain
+https://www.youtube.com/watch?v=KiRq3SXhOc4
+https://www.youtube.com/watch?v=bq_PIBWw5oI
+
+postprocessing stack:
+https://www.youtube.com/watch?v=pPar4bWpHFk
