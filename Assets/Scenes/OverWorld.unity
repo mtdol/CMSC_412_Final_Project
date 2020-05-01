@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44971108, g: 0.49977773, b: 0.5756334, a: 1}
+  m_IndirectSpecularColor: {r: 0.36055177, g: 0.52011263, b: 0.5761844, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1716,7 +1716,11 @@ MonoBehaviour:
   backwardSpeed: 6
   strafeSpeed: 8
   rotationSpeed: 20
-  sprintSpeed: 3
+  sword: {fileID: 0}
+  greatsword: {fileID: 0}
+  shield: {fileID: 0}
+  bow: {fileID: 0}
+  prefabArrow: {fileID: 0}
 --- !u!1 &1373211381
 GameObject:
   m_ObjectHideFlags: 0

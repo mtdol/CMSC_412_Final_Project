@@ -11,9 +11,9 @@ public class PlayerController : MonoBehaviour
     public float backwardSpeed;
     public float strafeSpeed;
     public float rotationSpeed;
+    public float runMult;
 
     private Animator anim, bowAnim;
-    private float runMult;
 
     public GameObject sword, greatsword, shield, bow, prefabArrow;
     private GameObject currentArrow, foot;
@@ -35,8 +35,6 @@ public class PlayerController : MonoBehaviour
         shieldUp = false;
         switchWeapon = false;
         weapon = Weapon.SWORD;
-
-        runMult = 2.5f;
     }
 
     private void Update()
@@ -230,12 +228,12 @@ public class PlayerController : MonoBehaviour
         // Stuff based on whether we're going forward or backward
         if (vAxis > 0)
         {
-            forwardMotion = vAxis * forwardSpeed * (run ? runMult : 1);
+            forwardMotion = forwardSpeed * (run ? runMult : 1);
             anim.SetFloat("Move", Mathf.SmoothStep(anim.GetFloat("Move"), (run ? 1 : 0.5f), 0.2f));
         }
         else if (vAxis < 0)
         {
-            forwardMotion = vAxis * backwardSpeed;
+            forwardMotion = backwardSpeed;
             anim.SetFloat("Move", Mathf.SmoothStep(anim.GetFloat("Move"), -0.5f, 0.2f));
         }
         else
@@ -247,11 +245,11 @@ public class PlayerController : MonoBehaviour
         // Stuff based on whether we're strafing
         if (hAxis > 0 && vAxis == 0)
         {
-            sideMotion = hAxis * strafeSpeed;
+            sideMotion = strafeSpeed;
             anim.SetFloat("Strafe", Mathf.SmoothStep(anim.GetFloat("Strafe"), (run ? 1 : 0.5f), 0.2f));
         } else if (hAxis < 0 && vAxis == 0)
         {
-            sideMotion = hAxis * strafeSpeed;
+            sideMotion = strafeSpeed;
             anim.SetFloat("Strafe", Mathf.SmoothStep(anim.GetFloat("Strafe"), (run ? -1 : -0.5f), 0.2f));
         } else
         {
@@ -276,8 +274,11 @@ public class PlayerController : MonoBehaviour
         }
 
         // Actually calculate and implement the movement
-        Vector3 forwardVector = Vector3.forward * forwardMotion;
-        Vector3 sideVector = Vector3.right * sideMotion;
-        transform.Translate(Vector3.Normalize(forwardVector + sideVector) * 1.5f * (run ? runMult : 1) * Time.deltaTime);
+        Vector3 forwardVector = Vector3.forward * vAxis;
+        Vector3 sideVector = Vector3.right * hAxis;
+        Vector3 normalized = Vector3.Normalize(forwardVector + sideVector);
+        normalized.z *= forwardMotion;
+        normalized.x *= sideMotion;
+        transform.Translate(normalized * 1.5f  * Time.deltaTime);
     }
 }
