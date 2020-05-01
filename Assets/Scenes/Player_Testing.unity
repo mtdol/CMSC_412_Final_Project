@@ -376,8 +376,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780107924}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 83.746, y: 1.327, z: 67.686}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 83.746, y: 2.4, z: 67.686}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -394,6 +394,12 @@ PrefabInstance:
       propertyPath: terrain
       value: 
       objectReference: {fileID: 723865824}
+    - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
+        type: 3}
+      propertyPath: prefabArrow
+      value: 
+      objectReference: {fileID: 6981671905545966706, guid: 0aab23ee8a0488c4395263c95989d8ec,
+        type: 3}
     - target: {fileID: 6386858254292792282, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: m_Name

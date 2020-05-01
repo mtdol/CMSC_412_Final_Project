@@ -19,20 +19,21 @@ public class ArrowController : MonoBehaviour
                 Rigidbody rb = gameObject.AddComponent<Rigidbody>();
                 rb.useGravity = false;
                 rb.freezeRotation = true;
+                rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+
+                print("made rigidbody");
             }
 
             // Move forward
-            transform.Translate(new Vector3(0, 15, 0) * Time.deltaTime);
+            transform.Translate(new Vector3(0, 30, 0) * Time.deltaTime);
         } 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Do collision things
-        print("Hello?");
-
         if (!collision.gameObject.name.Equals("Player"))
         {
+            print("Arrow has hit " + collision.gameObject.name);
             Destroy(gameObject);
         }
     }
