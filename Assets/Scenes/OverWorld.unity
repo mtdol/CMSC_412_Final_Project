@@ -2349,6 +2349,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
+        type: 3}
+      propertyPath: terrain
+      value: 
+      objectReference: {fileID: 827420671}
     - target: {fileID: 2407528524277083708, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: m_Layer

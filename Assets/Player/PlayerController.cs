@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Weapon : int { SWORD = 0, GREATSWORD = 1, BOW =2 };
+public enum Weapon : int { SWORD = 0, GREATSWORD = 1, BOW = 2 };
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator anim, bowAnim;
 
-    public GameObject sword, greatsword, shield, bow, prefabArrow;
+    public GameObject sword, greatsword, shield, bow, prefabArrow, terrain;
     private GameObject currentArrow, foot;
     private Weapon weapon;
 
@@ -35,6 +35,11 @@ public class PlayerController : MonoBehaviour
         shieldUp = false;
         switchWeapon = false;
         weapon = Weapon.SWORD;
+
+        sword.GetComponentInChildren<SwordController>().terrain = terrain;
+        greatsword.GetComponentInChildren<SwordController>().terrain = terrain;
+        foot.GetComponentInChildren<SwordController>().terrain = terrain;
+        shield.GetComponentInChildren<ShieldController>().terrain = terrain;
     }
 
     private void Update()

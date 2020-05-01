@@ -29,6 +29,7 @@ public class ArrowController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // Do collision things
+        print("Hello?");
 
         if (!collision.gameObject.name.Equals("Player"))
         {
