@@ -931,6 +931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guarding: 0
+  terrain: {fileID: 0}
 --- !u!1 &3135420857172597044
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,6 +991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attacking: 0
+  terrain: {fileID: 0}
 --- !u!54 &3135420857172597040
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1081,6 +1083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attacking: 0
+  terrain: {fileID: 0}
 --- !u!1 &3135420857908362908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,6 +1159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attacking: 0
+  terrain: {fileID: 0}
 --- !u!23 &3135420855978354107
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2097,7 +2101,7 @@ GameObject:
   - component: {fileID: 2407528522463884958}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2180,17 +2184,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87485939d86493e40889443d557bbbcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 2
-  backwardSpeed: 1
-  strafeSpeed: 1.5
-  rotationSpeed: 2
-  runMult: 2.5
+  forwardSpeed: 4
+  backwardSpeed: 2
+  strafeSpeed: 3.5
+  rotationSpeed: 3
+  runMult: 3
   sword: {fileID: 1906340987606444479}
   greatsword: {fileID: 3136139849628773888}
   shield: {fileID: 7662714290695439198}
   bow: {fileID: 3136010919818789414}
   prefabArrow: {fileID: 1959729250425484, guid: c6b9bdfbea520764aa7d0c7fb5887697,
     type: 3}
+  terrain: {fileID: 0}
 --- !u!1 &6388480882939064084
 GameObject:
   m_ObjectHideFlags: 0
