@@ -17,7 +17,7 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   gradingMode:
-    overrideState: 0
+    overrideState: 1
     value: 1
   externalLut:
     overrideState: 0
@@ -59,31 +59,31 @@ MonoBehaviour:
     value: 0
   colorFilter:
     overrideState: 1
-    value: {r: 0.8490566, g: 0.83481574, b: 0.5366678, a: 1}
+    value: {r: 0.9245283, g: 0.90817463, b: 0.5320399, a: 1}
   hueShift:
     overrideState: 1
-    value: -10
+    value: -9
   saturation:
     overrideState: 1
-    value: 6
+    value: 13
   brightness:
     overrideState: 0
     value: 0
   postExposure:
-    overrideState: 0
-    value: 0.1
+    overrideState: 1
+    value: -0.15
   contrast:
     overrideState: 1
-    value: 12
+    value: 7
   mixerRedOutRedIn:
     overrideState: 1
-    value: 83
+    value: 82
   mixerRedOutGreenIn:
     overrideState: 1
-    value: 21
+    value: 25
   mixerRedOutBlueIn:
     overrideState: 1
-    value: 33
+    value: 47
   mixerGreenOutRedIn:
     overrideState: 0
     value: 0
@@ -107,10 +107,10 @@ MonoBehaviour:
     value: {x: 1, y: 1, z: 1, w: 0.37775448}
   gamma:
     overrideState: 1
-    value: {x: 1, y: 1, z: 1, w: 0.29380906}
+    value: {x: 1, y: 1, z: 1, w: 0.26232952}
   gain:
     overrideState: 1
-    value: {x: 1, y: 1, z: 1, w: 0.20986362}
+    value: {x: 1, y: 1, z: 1, w: 0.13641135}
   masterCurve:
     overrideState: 0
     value:
@@ -1472,13 +1472,13 @@ MonoBehaviour:
     value: 0
   focusDistance:
     overrideState: 1
-    value: 5
+    value: 3
   aperture:
-    overrideState: 0
-    value: 4.1
+    overrideState: 1
+    value: 23.2
   focalLength:
-    overrideState: 0
-    value: 23
+    overrideState: 1
+    value: 76
   kernelSize:
     overrideState: 0
     value: 1
@@ -1497,13 +1497,13 @@ MonoBehaviour:
   active: 0
   enabled:
     overrideState: 1
-    value: 0
+    value: 1
   shutterAngle:
-    overrideState: 0
-    value: 270
+    overrideState: 1
+    value: 161
   sampleCount:
-    overrideState: 0
-    value: 10
+    overrideState: 1
+    value: 31
 --- !u!114 &7634595942632567251
 MonoBehaviour:
   m_ObjectHideFlags: 3
