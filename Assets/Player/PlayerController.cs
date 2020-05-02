@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
                 float mouseHorizontal = Input.GetAxis("Mouse X");
                 if (Mathf.Abs(mouseHorizontal) > 0.1f)
                 {
-                    transform.Rotate(new Vector3(0, 135, 0) * Time.deltaTime * mouseHorizontal * rotationSpeed);
+                    Rotate(mouseHorizontal);
                     anim.SetBool("Turn", true);
                 } else
                 {
@@ -265,7 +265,7 @@ public class PlayerController : MonoBehaviour
         // Stuff based on whether we're rotating
         if (Mathf.Abs(mouseHorizontal) > 0.1f)
         {
-            transform.Rotate(new Vector3(0, 135, 0) * Time.deltaTime * mouseHorizontal * rotationSpeed);
+            Rotate(mouseHorizontal);
 
             if (vAxis == 0 && hAxis == 0)
             {
@@ -285,5 +285,14 @@ public class PlayerController : MonoBehaviour
         normalized.z *= forwardMotion;
         normalized.x *= sideMotion;
         transform.Translate(normalized * 1.5f  * Time.deltaTime);
+    }
+
+
+    // rotates the character in fixed update time
+    private void Rotate(float rotation)
+    {
+        Vector3 desiredRotation = new Vector3(0, 10, 0) * Time.fixedDeltaTime * rotation * rotationSpeed;
+        transform.Rotate(desiredRotation);
+
     }
 }
