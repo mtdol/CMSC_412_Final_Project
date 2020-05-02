@@ -696,7 +696,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.818196, g: 0.8301887, b: 0.44642222, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.45
   m_Range: 1000
   m_SpotAngle: 30
@@ -2439,6 +2439,21 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 311
       objectReference: {fileID: 0}
+    - target: {fileID: 2407528524277083649, guid: 523715d1e0014bc499909209cab96e4c,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.4757921
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407528524277083649, guid: 523715d1e0014bc499909209cab96e4c,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.58701634
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407528524277083649, guid: 523715d1e0014bc499909209cab96e4c,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.764151
+      objectReference: {fileID: 0}
     - target: {fileID: 2407528524277083708, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: m_Layer
@@ -2507,17 +2522,17 @@ PrefabInstance:
     - target: {fileID: 7996691335156482505, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7996691335156482505, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7996691335156482505, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 523715d1e0014bc499909209cab96e4c, type: 3}
@@ -2553,10 +2568,10 @@ MonoBehaviour:
   finalBlitToCameraTarget: 0
   antialiasingMode: 3
   temporalAntialiasing:
-    jitterSpread: 0.871
-    sharpness: 0.52
-    stationaryBlending: 0.823
-    motionBlending: 0.823
+    jitterSpread: 0.971
+    sharpness: 0.25
+    stationaryBlending: 0.9
+    motionBlending: 0.088
   subpixelMorphologicalAntialiasing:
     quality: 2
   fastApproximateAntialiasing:

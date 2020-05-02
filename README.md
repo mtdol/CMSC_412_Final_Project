@@ -10,8 +10,5 @@ and dungeons to explore and conquer!
 The game is made using Unity3d and is a culmination of programming and game design techinques learned
 in the the course leading up to the final project.
 
-## Required Assets For Development
-as of now:
-1. Free SpeedTrees
-2. Terrain Tools Sample Asset Pack
-3. Unity standard assets 2017
+There are two levels (dungeons) and an open area called overworld to explore. The goal of the player is to
+navegate the main world and find and conquer both dungeons.
