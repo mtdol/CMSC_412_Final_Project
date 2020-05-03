@@ -2087,13 +2087,13 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: cb5082259204a374a86aaf54d7920369, type: 2}
-  m_TreeDistance: 1801
+  m_TreeDistance: 906
   m_TreeBillboardDistance: 10
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 207
-  m_DetailObjectDensity: 0.618
-  m_HeightmapPixelError: 5
+  m_DetailObjectDistance: 149
+  m_DetailObjectDensity: 0.225
+  m_HeightmapPixelError: 8
   m_SplatMapDistance: 1024
   m_HeightmapMaximumLOD: 0
   m_ShadowCastingMode: 2
@@ -5699,7 +5699,7 @@ PrefabInstance:
     - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: rotationSpeed
-      value: 3
+      value: 3.6
       objectReference: {fileID: 0}
     - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
