@@ -19,6 +19,16 @@ public class PlayerController : MonoBehaviour
     public const int FOREST_DUNGEON = 0;
     public const int DESERT_DUNGEON = 1;
 
+    // the location in the overworld the player should spawn to,
+    // defaults to these coordinates
+    private static int playerSpawn = DEFAULT_OVERWORLD_SPAWN;
+    // these are the keys that tell the Overworld controller where to spawn the player
+    // these are stored in the above variable
+    public const int DEFAULT_OVERWORLD_SPAWN = 0;
+    public const int FOREST_DUNGEON_SPAWN = 1;
+    public const int DESERT_DUNGEON_SPAWN = 2;
+
+
     public float forwardSpeed;
     public float backwardSpeed;
     public float strafeSpeed;
@@ -387,5 +397,16 @@ public class PlayerController : MonoBehaviour
     public Weapon GetWeapon()
     {
         return weapon;
+    }
+
+    // sets the location the player should spawn to in the overworld
+    public void SetPlayerSpawn(int position)
+    {
+        playerSpawn = position;
+    }
+    // gets where in the overworld the player should spawn
+    public int GetPlayerSpawn()
+    {
+        return playerSpawn;
     }
 }
