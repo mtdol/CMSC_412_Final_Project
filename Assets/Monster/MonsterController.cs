@@ -23,7 +23,9 @@ public class MonsterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        topOfHead = GameObject.Find("mixamorig:HeadTop_End");
+        //topOfHead = GameObject.Find("mixamorig:HeadTop_End");
+        topOfHead = transform.Find("mixamorig:Hips").Find("mixamorig:Spine").Find("mixamorig:Spine1")
+            .Find("mixamorig:Spine2").Find("mixamorig:Neck").Find("mixamorig:Head").Find("mixamorig:HeadTop_End").gameObject;
 
         health = maxHealth;
         healthBar = Instantiate(healthBarPrefab, GameObject.Find("Canvas").transform);
@@ -55,7 +57,7 @@ public class MonsterController : MonoBehaviour
         if (healthBar != null)
         {
             healthBar.gameObject.SetActive(canSeePlayer);
-        }
+        } 
 
         if (!isDead && canSeePlayer && !anim.GetCurrentAnimatorStateInfo(0).IsName("Monster Hit"))
         {

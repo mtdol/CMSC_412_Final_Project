@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
     private bool attack, jump, run, shieldUp, aim; // Bools for actions the player can do
     private bool switchWeapon; // Weapon switching
+    private bool isDead; 
 
     // Start is called before the first frame update
     void Start()
@@ -102,6 +103,11 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isDead)
+        {
+            return;
+        }
+
         // Use these to get the names of whatever animation/transition we're in
         AnimatorStateInfo animState = anim.GetCurrentAnimatorStateInfo(0);
         AnimatorTransitionInfo animTrans = anim.GetAnimatorTransitionInfo(0);
@@ -348,8 +354,10 @@ public class PlayerController : MonoBehaviour
             health = Mathf.Max(health - damageAmount, 0);
         }
 
-        if (health == 0)
+        if (!isDead && health == 0)
         {
+            isDead = true;
+
             if (playerHealthBar != null)
             {
                 Destroy(playerHealthBar.gameObject);
@@ -358,7 +366,7 @@ public class PlayerController : MonoBehaviour
             // Die
             anim.CrossFade("Death", 0.3f);
         }
-        else if (playerHealthBar != null)
+        else if (!isDead && playerHealthBar != null)
         {
             playerHealthBar.value = health;
         }
