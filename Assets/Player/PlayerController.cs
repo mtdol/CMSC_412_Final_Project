@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum Weapon : int { SWORD = 0, GREATSWORD = 1, BOW = 2 };
 
@@ -23,12 +24,16 @@ public class PlayerController : MonoBehaviour
     public float strafeSpeed;
     public float rotationSpeed;
     public float runMult;
+    public int maxHealth;
+    public Slider playerHealthBar;
 
     private Animator anim, bowAnim;
 
     public GameObject sword, greatsword, shield, bow, prefabArrow, terrain;
     private GameObject currentArrow, foot;
     private Weapon weapon;
+
+    private int health;
 
     private bool attack, jump, run, shieldUp, aim; // Bools for actions the player can do
     private bool switchWeapon; // Weapon switching
@@ -47,10 +52,28 @@ public class PlayerController : MonoBehaviour
         switchWeapon = false;
         weapon = Weapon.SWORD;
 
-        sword.GetComponentInChildren<SwordController>().terrain = terrain;
-        greatsword.GetComponentInChildren<SwordController>().terrain = terrain;
-        foot.GetComponentInChildren<SwordController>().terrain = terrain;
-        shield.GetComponentInChildren<ShieldController>().terrain = terrain;
+        health = maxHealth;
+
+        if (playerHealthBar != null)
+        {
+            playerHealthBar.maxValue = maxHealth;
+            playerHealthBar.value = health;
+        }
+
+        SwordController swordController = sword.GetComponentInChildren<SwordController>();
+        swordController.terrain = terrain;
+        swordController.damageAmount = 1;
+
+        SwordController greatswordController = greatsword.GetComponentInChildren<SwordController>();
+        greatswordController.terrain = terrain;
+        greatswordController.damageAmount = 3;
+
+        SwordController footController = foot.GetComponentInChildren<SwordController>();
+        footController.terrain = terrain;
+        footController.damageAmount = 1;
+
+        ShieldController shieldController = shield.GetComponentInChildren<ShieldController>();
+        shieldController.terrain = terrain;
     }
 
     private void Update()
@@ -110,7 +133,8 @@ public class PlayerController : MonoBehaviour
                 {
                     Rotate(mouseHorizontal);
                     anim.SetBool("Turn", true);
-                } else
+                }
+                else
                 {
                     anim.SetBool("Turn", false);
                 }
@@ -145,7 +169,7 @@ public class PlayerController : MonoBehaviour
                     currentArrow.GetComponent<ArrowController>().released = true;
                     currentArrow = null;
                 }
-            } 
+            }
             else if (weapon == Weapon.SWORD)
             {
                 shield.GetComponentInChildren<ShieldController>().guarding = false;
@@ -172,14 +196,14 @@ public class PlayerController : MonoBehaviour
                     greatsword.SetActive(true);
 
                     weapon = Weapon.GREATSWORD;
-                } 
-                else if (weapon == Weapon.GREATSWORD) 
+                }
+                else if (weapon == Weapon.GREATSWORD)
                 {
                     greatsword.SetActive(false);
                     bow.SetActive(true);
 
                     weapon = Weapon.BOW;
-                } 
+                }
                 else
                 {
                     bow.SetActive(false);
@@ -199,7 +223,7 @@ public class PlayerController : MonoBehaviour
                 if (weapon == Weapon.SWORD)
                 {
                     sword.GetComponentInChildren<SwordController>().attacking = false;
-                } 
+                }
                 else if (weapon == Weapon.GREATSWORD)
                 {
                     greatsword.GetComponentInChildren<SwordController>().attacking = false;
@@ -207,7 +231,7 @@ public class PlayerController : MonoBehaviour
 
                 // Move!
                 HandleMovement();
-            } 
+            }
             else
             {
                 if (weapon == Weapon.SWORD)
@@ -263,11 +287,13 @@ public class PlayerController : MonoBehaviour
         {
             sideMotion = strafeSpeed;
             anim.SetFloat("Strafe", Mathf.SmoothStep(anim.GetFloat("Strafe"), (run ? 1 : 0.5f), 0.2f));
-        } else if (hAxis < 0 && vAxis == 0)
+        }
+        else if (hAxis < 0 && vAxis == 0)
         {
             sideMotion = strafeSpeed;
             anim.SetFloat("Strafe", Mathf.SmoothStep(anim.GetFloat("Strafe"), (run ? -1 : -0.5f), 0.2f));
-        } else
+        }
+        else
         {
             sideMotion = 0;
             anim.SetFloat("Strafe", Mathf.SmoothStep(anim.GetFloat("Strafe"), 0, 0.2f));
@@ -295,7 +321,7 @@ public class PlayerController : MonoBehaviour
         Vector3 normalized = Vector3.Normalize(forwardVector + sideVector);
         normalized.z *= forwardMotion;
         normalized.x *= sideMotion;
-        transform.Translate(normalized * 1.5f  * Time.deltaTime);
+        transform.Translate(normalized * 1.5f * Time.deltaTime);
     }
 
 
@@ -305,6 +331,37 @@ public class PlayerController : MonoBehaviour
         Vector3 desiredRotation = new Vector3(0, 10, 0) * Time.fixedDeltaTime * rotation * rotationSpeed;
         transform.Rotate(desiredRotation);
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("EnemyWeapon"))
+        {
+            Damage(1);
+        }
+    }
+
+    private void Damage(int damageAmount)
+    {
+        if (!shieldUp)
+        {
+            health = Mathf.Max(health - damageAmount, 0);
+        }
+
+        if (health == 0)
+        {
+            if (playerHealthBar != null)
+            {
+                Destroy(playerHealthBar.gameObject);
+            }
+
+            // Die
+            anim.CrossFade("Death", 0.3f);
+        }
+        else if (playerHealthBar != null)
+        {
+            playerHealthBar.value = health;
+        }
     }
 
     // sets the given dungeon's completion status using the dungeon codes defined above
@@ -317,5 +374,10 @@ public class PlayerController : MonoBehaviour
     public bool GetDungeonCompletion(int dungeon)
     {
         return dungeonCompletion[dungeon];
+    }
+
+    public Weapon GetWeapon()
+    {
+        return weapon;
     }
 }

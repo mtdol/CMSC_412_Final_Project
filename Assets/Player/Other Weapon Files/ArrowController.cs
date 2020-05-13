@@ -5,6 +5,7 @@ using UnityEngine;
 public class ArrowController : MonoBehaviour
 {
     public bool released = false;
+    public int damageAmount;
 
     void FixedUpdate()
     {
@@ -31,9 +32,15 @@ public class ArrowController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.name.Equals("Player"))
+        GameObject target = collision.gameObject;
+
+        if (!target.name.Equals("Player"))
         {
-            print("Arrow has hit " + collision.gameObject.name);
+            if (target.CompareTag("Enemy"))
+            {
+                target.GetComponent<MonsterController>().Damage(damageAmount);
+            }
+
             Destroy(gameObject);
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class SwordController : MonoBehaviour
 {
     public bool attacking;
+    public int damageAmount;
     public GameObject terrain;
 
     // Start is called before the first frame update
@@ -29,16 +30,17 @@ public class SwordController : MonoBehaviour
             Collider terrainCollider = terrain.GetComponent<Collider>();
             Physics.IgnoreCollision(terrainCollider, thisCollider);
             terrain = null;
-            print("Fixed collider");
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (attacking)
+        GameObject target = collision.gameObject;
+
+        if (attacking && target.CompareTag("Enemy"))
         {
             // Do collider things
-            print("Sword sliced " + collision.gameObject.name);
+            target.GetComponent<MonsterController>().Damage(damageAmount);
         }
     }
 }
