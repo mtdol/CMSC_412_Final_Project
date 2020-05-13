@@ -7,6 +7,17 @@ public enum Weapon : int { SWORD = 0, GREATSWORD = 1, BOW = 2 };
 public class PlayerController : MonoBehaviour
 {
 
+    // is set to true by the appropriate dungeon controller when the dungeon is beaten
+    private static bool[] dungeonCompletion = {
+        // forest
+        false,
+        // desert
+        false 
+    };
+    // the keys in the above array
+    public const int FOREST_DUNGEON = 0;
+    public const int DESERT_DUNGEON = 1;
+
     public float forwardSpeed;
     public float backwardSpeed;
     public float strafeSpeed;
@@ -294,5 +305,17 @@ public class PlayerController : MonoBehaviour
         Vector3 desiredRotation = new Vector3(0, 10, 0) * Time.fixedDeltaTime * rotation * rotationSpeed;
         transform.Rotate(desiredRotation);
 
+    }
+
+    // sets the given dungeon's completion status using the dungeon codes defined above
+    public void SetDungeonCompletion(int dungeon, bool v)
+    {
+        dungeonCompletion[dungeon] = v;
+    }
+
+    // returns the completion status of the given dungeon
+    public bool GetDungeonCompletion(int dungeon)
+    {
+        return dungeonCompletion[dungeon];
     }
 }

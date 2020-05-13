@@ -7,7 +7,6 @@ public class OverworldReturnController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("collided");
             SceneManager.LoadScene("OverWorld");
         }
         
