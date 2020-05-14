@@ -8,13 +8,13 @@ public class SpeakToNPC : MonoBehaviour {
     public GameObject canvas;
     public GameObject PressR;
     public GameObject player;
+    public GameObject teleportPanel; 
     public TextMeshProUGUI textDisplay;
     public  string[] task;
     public string[] reward;
     private int n = 0;
     private bool CanvasOn = false;
-    private bool nearbyhuh  ;
-    private bool finishhuh ,continuehuh, enableR ;
+    private bool nearbyhuh,finishhuh ,continuehuh, enableR ;
     
     void Start(){
         // start with canvas closed 
@@ -24,6 +24,7 @@ public class SpeakToNPC : MonoBehaviour {
         nearbyhuh = false; 
         PressR.SetActive(nearbyhuh);
         enableR = true;
+        teleportPanel.SetActive(false);
         
         //Debug.Log(player.transform.position);
        
@@ -90,6 +91,7 @@ public class SpeakToNPC : MonoBehaviour {
                     StartCoroutine(Typetask());
                     n = n + 1;
                     if(n == task.Length){
+                        teleportPanel.SetActive(true);
                         n = 0;
                         enableR = true;
                         continuehuh = false;
@@ -117,5 +119,7 @@ public class SpeakToNPC : MonoBehaviour {
        
         
     }
+
+
    
 }
