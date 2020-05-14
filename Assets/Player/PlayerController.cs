@@ -1,12 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public enum Weapon : int { SWORD = 0, GREATSWORD = 1, BOW = 2 };
 
 public class PlayerController : MonoBehaviour
 {
+
+    // represents the dungeons, can be used in the state arrays stored
+    // in the player controller
+    public const int FOREST_DUNGEON = 0;
+    public const int DESERT_DUNGEON = 1;
 
     // is set to true by the appropriate dungeon controller when the dungeon is beaten
     private static bool[] dungeonCompletion = {
@@ -15,9 +18,16 @@ public class PlayerController : MonoBehaviour
         // desert
         false 
     };
-    // the keys in the above array
-    public const int FOREST_DUNGEON = 0;
-    public const int DESERT_DUNGEON = 1;
+
+    // the dungeons that the player has access to
+    // the dungeon will block the player if the player hasn't been granted access
+    private static bool[] dungeonAccess =
+    {
+        // forest
+        false,
+        // desert
+        false,
+    };
 
     // the location in the overworld the player should spawn to,
     // defaults to these coordinates
@@ -408,5 +418,17 @@ public class PlayerController : MonoBehaviour
     public int GetPlayerSpawn()
     {
         return playerSpawn;
+    }
+
+    // sets the given dungeon's access status using the dungeon codes defined above
+    public void SetDungeonAccess(int dungeon, bool v)
+    {
+        dungeonAccess[dungeon] = v;
+    }
+
+    // returns the access status of the given dungeon
+    public bool GetDungeonAccess(int dungeon)
+    {
+        return dungeonAccess[dungeon];
     }
 }
