@@ -9,7 +9,7 @@ public class MonsterController : MonoBehaviour
     public Slider healthBarPrefab;
     public Material bodyFadeMaterial, limbFadeMaterial;
     public float walkSpeed;
-    public bool isHeavy;
+    public bool isHeavy, useLineOfSight;
 
     private int health;
     private Slider healthBar;
@@ -53,7 +53,26 @@ public class MonsterController : MonoBehaviour
         float angle = Vector3.SignedAngle(transform.forward, toPlayer, Vector3.up);
         anim.SetFloat("distanceToPlayer", toPlayer.magnitude);
 
-        bool canSeePlayer = transform.Find("Ch30").GetComponent<SkinnedMeshRenderer>().isVisible && toPlayer.magnitude <= detectionRadius;
+        RaycastHit hit;
+        String hitName;
+        bool lineOfSight = !useLineOfSight;
+
+        if (useLineOfSight)
+        {
+            Physics.Raycast(topOfHead.transform.position, player.transform.position - topOfHead.transform.position, out hit);
+
+            if (hit.transform != null)
+            {
+                hitName = hit.transform.name;
+
+                // This would be smarter to do with tags, but this makes it easier to merge things on Github
+                lineOfSight = hitName.Equals("Player") || hitName.Equals("SwordCollider") || hitName.Equals("KickCollider")
+                    || hitName.Equals("GreatswordCollider") || hitName.Equals("ShieldCollider")
+                    || hitName.Equals("Lefthand") || hitName.Equals("RightHand") || hitName.Equals("Mutant");
+            }
+        }
+
+        bool canSeePlayer = transform.Find("Ch30").GetComponent<SkinnedMeshRenderer>().isVisible && toPlayer.magnitude <= detectionRadius && lineOfSight;
 
         if (healthBar != null)
         {
@@ -133,8 +152,9 @@ public class MonsterController : MonoBehaviour
         foreach (GameObject monster in enemies)
         {
             Vector3 distanceToMonster = monster.transform.position - transform.position;
+            MonsterController controller = monster.GetComponent<MonsterController>();
 
-            if (!monster.GetComponent<MonsterController>().isHeavy && distanceToMonster.magnitude <= detectionRadius && monster.gameObject != gameObject)
+            if (!controller.isHeavy && distanceToMonster.magnitude <= detectionRadius && monster.gameObject != gameObject && !controller.IsDead())
             {
                 monster.GetComponent<Animator>().CrossFade("Monster Cower", 0.3f);
             }
@@ -173,5 +193,10 @@ public class MonsterController : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    public bool IsDead()
+    {
+        return isDead;
     }
 }

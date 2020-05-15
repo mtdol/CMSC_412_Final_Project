@@ -365,6 +365,10 @@ public class PlayerController : MonoBehaviour
         {
             Damage(1);
         }
+        else if (other.gameObject.CompareTag("EnemyHeavyWeapon"))
+        {
+            Damage(2);
+        }
     }
 
     private void Damage(int damageAmount)
