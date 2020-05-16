@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     // in the player controller
     public const int FOREST_DUNGEON = 0;
     public const int DESERT_DUNGEON = 1;
-    public static bool HAVE_KEY = false;
+    public static bool haveKey = false;
 
     // is set to true by the appropriate dungeon controller when the dungeon is beaten
     private static bool[] dungeonCompletion = {
@@ -379,7 +379,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag ("key"))
         {
-            HAVE_KEY = true;
+            haveKey = true;
             //Debug.Log("oof");
             //findkeytext.SetActive(true);
             Invoke("GoToVillage",2);

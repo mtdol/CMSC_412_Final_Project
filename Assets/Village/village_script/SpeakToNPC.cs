@@ -51,7 +51,7 @@ public class SpeakToNPC : MonoBehaviour {
 
     void Update(){ 
 
-        bool HaveKey = PlayerController.HAVE_KEY;
+        bool HaveKey = PlayerController.haveKey;
 
         //Debug.Log("do i have key " + HaveKey);
 
