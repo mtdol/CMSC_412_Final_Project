@@ -12,6 +12,10 @@ public class OverworldController : MonoBehaviour
     private GameObject desertPlayerSpawn;
     private GameObject villageEntranceSpawn;
 
+    // spawns the player at the location specified in the unity editor rather than a spawn point
+    // when the overworld is first run
+    public bool SpawnPlayerInitiallyAtTestLocation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +30,12 @@ public class OverworldController : MonoBehaviour
         // place the player at the static spawn point defined on the player
         if (playerController.GetPlayerSpawn() == PlayerController.DEFAULT_OVERWORLD_SPAWN)
         {
-            player.transform.position = defaultPlayerSpawn.transform.position;
-            player.transform.rotation = defaultPlayerSpawn.transform.rotation;
+            if (!SpawnPlayerInitiallyAtTestLocation)
+            {
+                player.transform.position = defaultPlayerSpawn.transform.position;
+                player.transform.rotation = defaultPlayerSpawn.transform.rotation;
+
+            }
         } else if (playerController.GetPlayerSpawn() == PlayerController.DESERT_DUNGEON_SPAWN)
         {
             player.transform.position = desertPlayerSpawn.transform.position;
