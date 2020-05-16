@@ -10,16 +10,16 @@ public class SpeakToNPC : MonoBehaviour {
     public GameObject player;
     public GameObject teleportPanel; 
     public TextMeshProUGUI textDisplay;
-    public  string[] task;
-    public string[] reward;
+    public  string[] AskMaze, FinishMaze, FinishForest, FinishDessert ;
+
     private int n = 0;
     private bool CanvasOn = false;
-    private bool nearbyhuh ,continuehuh, enableR ;
+    private bool nearbyhuh , enableR ;
     
     void Start(){
         // start with canvas closed 
         canvas.SetActive(CanvasOn);
-        continuehuh = false; 
+
         nearbyhuh = false; 
         PressR.SetActive(nearbyhuh);
         enableR = true;
@@ -34,7 +34,7 @@ public class SpeakToNPC : MonoBehaviour {
 
     // slowly type out the text 
     IEnumerator Typetask(){
-        foreach(char letter in task[n].ToCharArray()){
+        foreach(char letter in AskMaze[n].ToCharArray()){
             textDisplay.text =  textDisplay.text + letter;
             yield return new WaitForSeconds(0.03f);
             
@@ -42,7 +42,22 @@ public class SpeakToNPC : MonoBehaviour {
     }
 
      IEnumerator Typereward(){
-        foreach(char letter in reward[n].ToCharArray()){
+        foreach(char letter in FinishMaze[n].ToCharArray()){
+            textDisplay.text =  textDisplay.text + letter;
+            yield return new WaitForSeconds(0.03f);
+            
+        }
+    }
+
+     IEnumerator TypeForest(){
+        foreach(char letter in FinishForest[n].ToCharArray()){
+            textDisplay.text =  textDisplay.text + letter;
+            yield return new WaitForSeconds(0.03f);
+            
+        }
+    }
+         IEnumerator TypeDessert(){
+        foreach(char letter in FinishDessert[n].ToCharArray()){
             textDisplay.text =  textDisplay.text + letter;
             yield return new WaitForSeconds(0.03f);
             
@@ -52,6 +67,12 @@ public class SpeakToNPC : MonoBehaviour {
     void Update(){ 
 
         bool HaveKey = PlayerController.haveMazeKey;
+        // bool CompleteForest = PlayerController.dungeonCompletion[0];
+        // Debug.Log("forest complete" + CompleteForest);
+        // bool CompleteDessert = PlayerController.dungeonCompletion[1];
+        // Debug.Log("dessert complete" + CompleteDessert);
+
+
 
         //Debug.Log("do i have key " + HaveKey);
 
@@ -62,18 +83,9 @@ public class SpeakToNPC : MonoBehaviour {
             nearbyhuh =false;
         }
         PressR.SetActive(nearbyhuh && enableR);
-        // 74 66 
-        // 76 84 
+
         
-        if ( CanvasOn == true && continuehuh == true){
-            if (HaveKey == false ){
-                StartCoroutine(Typetask());
-                continuehuh = false;
-            }else{
-                StartCoroutine(Typereward());
-                continuehuh = false;
-            }
-        }
+
         
         // press R to speak to npc 
         if (Input.GetKeyDown(KeyCode.R) && nearbyhuh == true) {
@@ -83,39 +95,75 @@ public class SpeakToNPC : MonoBehaviour {
             textDisplay.text =  "..!!??";
         }
 
+
+        // if (Input.GetKeyDown(KeyCode.U) ) {
+        //     PlayerController.dungeonCompletion[0] = true;
+        //     Debug.Log("access to forest are now set to:" +  PlayerController.dungeonCompletion[0]);
+        // }
+
+        // if (Input.GetKeyDown(KeyCode.I) ) {
+        //     PlayerController.dungeonCompletion[1] = true;
+        //     Debug.Log("access to dessert are now set to:" +  PlayerController.dungeonCompletion[1]);
+        // }
+
+
+
         
         
         //press space to continue the conversation 
         if (Input.GetKeyDown(KeyCode.Y)) {
             //Debug.Log(n);
-            continuehuh = true;
+
             //Debug.Log("space");
-            if ( reward[n] != null && task[n] != null){
+            if ( FinishMaze[n] != null && AskMaze[n] != null){
                 textDisplay.text = "Villager: ";
-                if (HaveKey == false ){
+                //maze 
+                if (HaveKey == false && PlayerController.dungeonCompletion[0]== false && PlayerController.dungeonCompletion[1]== false){
                     StartCoroutine(Typetask());
                     n = n + 1;
-                    if(n == task.Length){
+                    if(n == AskMaze.Length){
                         teleportPanel.SetActive(true);
                         n = 0;
                         enableR = true;
-                        continuehuh = false;
                         CanvasOn = false;
                         canvas.SetActive(CanvasOn);
-                    }else{
-                        continuehuh = false;}
-                }else{
+                    }
+                //forest dungon 
+                }else if(HaveKey == true && PlayerController.dungeonCompletion[0]== false && PlayerController.dungeonCompletion[1]== false ) {
                     StartCoroutine(Typereward());
                     n = n + 1;
-                    continuehuh = false;
-                    if (n == reward.Length){
+                    if (n == FinishMaze.Length){
+                        PlayerController.dungeonAccess[0] = true;
+                        //Debug.Log("after maze " + PlayerController.dungeonAccess[0]);
                         n = 0;
                         enableR = true;
-                        continuehuh = false;
+
                         CanvasOn = false;
-                        canvas.SetActive(CanvasOn);
-                    }else{
-                        continuehuh = false;}
+                        canvas.SetActive(CanvasOn);     
+                    }
+                //dessert dungon
+                }else if(HaveKey == true && PlayerController.dungeonCompletion[0]== true && PlayerController.dungeonCompletion[1]== false){
+                    StartCoroutine(TypeForest());
+                    n = n + 1;
+                    if (n == FinishForest.Length){
+                        PlayerController.dungeonAccess[1] = true;
+                        //Debug.Log("after maze " + PlayerController.dungeonAccess[1]);
+                        n = 0;
+                        enableR = true;
+                        CanvasOn = false;
+                        canvas.SetActive(CanvasOn);     
+                    }
+                //beat the game 
+                }else if(HaveKey == true && PlayerController.dungeonCompletion[0]== true && PlayerController.dungeonCompletion[1]== true){
+                    StartCoroutine(TypeDessert());
+                    n = n + 1;
+                    if (n == FinishDessert.Length){
+                        n = 0;
+                        enableR = true;
+                        CanvasOn = false;
+                        canvas.SetActive(CanvasOn);     
+                    }
+
                 }
             }
         }

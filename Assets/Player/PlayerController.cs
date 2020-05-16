@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
 
     // is set to true by the appropriate dungeon controller when the dungeon is beaten
-    private static bool[] dungeonCompletion = {
+    public static bool[] dungeonCompletion = {
         // forest
         false,
         // desert
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     // the dungeons that the player has access to
     // the dungeon will block the player if the player hasn't been granted access
-    private static bool[] dungeonAccess =
+    public  static bool[] dungeonAccess =
     {
         // forest
         false,
@@ -46,7 +46,6 @@ public class PlayerController : MonoBehaviour
     public const int DESERT_DUNGEON_SPAWN = 2;
     public const int VILLAGE_ENTRANCE_SPAWN = 3;
 
-
     public float forwardSpeed;
     public float backwardSpeed;
     public float strafeSpeed;
@@ -63,9 +62,10 @@ public class PlayerController : MonoBehaviour
 
     private int health;
 
-    private bool attack, jump, run, shieldUp, aim; // Bools for actions the player can do
+    private bool attack, jump, run, shieldUp, aim, quickTurn; // Bools for actions the player can do
     private bool switchWeapon; // Weapon switching
-    private bool isDead; 
+    private bool isDead;
+    private float quickTurnTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
         shieldUp = false;
         switchWeapon = false;
         weapon = Weapon.SWORD;
+        quickTurnTimer = 0;
 
         health = maxHealth;
 
@@ -108,12 +109,13 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
-        //Debug.Log(HAVE_KEY);
         // Detect if these keys are being held down or not
         run = Input.GetKey(KeyCode.LeftShift);
         shieldUp = Input.GetKey(KeyCode.Mouse1);
         aim = Input.GetKey(KeyCode.Mouse0) && (weapon == Weapon.BOW);
+
+        // Increment the double-tap timer for quick-turning
+        quickTurnTimer = Mathf.Max(quickTurnTimer - Time.deltaTime, 0);
 
         // Detect if these keys have been pressed (but not necessarily held)
         if (Input.GetKeyDown(KeyCode.Space))
@@ -129,6 +131,19 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             switchWeapon = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            if (quickTurnTimer == 0)
+            {
+                quickTurnTimer = 0.5f;
+            } 
+            else
+            {
+                quickTurn = true;
+                quickTurnTimer = 0;
+            }
         }
     }
 
@@ -218,6 +233,15 @@ public class PlayerController : MonoBehaviour
             {
                 anim.SetTrigger("Jump");
                 jump = false;
+            }
+            else if (quickTurn)
+            {
+                anim.SetTrigger("QuickTurn");
+                quickTurn = false;
+            }
+            else if (animState.IsTag("QuickTurn"))
+            {
+                transform.Rotate(new Vector3(0, 420, 0) * Time.deltaTime);
             }
             else if (switchWeapon)
             {
@@ -324,12 +348,12 @@ public class PlayerController : MonoBehaviour
         // Stuff based on whether we're strafing
         if (hAxis > 0 && vAxis == 0)
         {
-            sideMotion = strafeSpeed;
+            sideMotion = strafeSpeed * (run ? runMult : 1);
             anim.SetFloat("Strafe", Mathf.SmoothStep(anim.GetFloat("Strafe"), (run ? 1 : 0.5f), 0.2f));
         }
         else if (hAxis < 0 && vAxis == 0)
         {
-            sideMotion = strafeSpeed;
+            sideMotion = strafeSpeed * (run ? runMult : 1);
             anim.SetFloat("Strafe", Mathf.SmoothStep(anim.GetFloat("Strafe"), (run ? -1 : -0.5f), 0.2f));
         }
         else
@@ -360,7 +384,8 @@ public class PlayerController : MonoBehaviour
         Vector3 normalized = Vector3.Normalize(forwardVector + sideVector);
         normalized.z *= forwardMotion;
         normalized.x *= sideMotion;
-        transform.Translate(normalized * 1.5f * Time.deltaTime);
+        //transform.Translate(normalized * 1.5f * Time.deltaTime);
+        GetComponent<Rigidbody>().AddForce(transform.TransformDirection(normalized) * 60);
     }
 
 
@@ -393,7 +418,6 @@ public class PlayerController : MonoBehaviour
 
 
     }
-
 
     private void Damage(int damageAmount)
     {
