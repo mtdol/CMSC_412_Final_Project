@@ -10,6 +10,7 @@ public class OverworldController : MonoBehaviour
     private GameObject defaultPlayerSpawn;
     private GameObject forestPlayerSpawn;
     private GameObject desertPlayerSpawn;
+    private GameObject villageEntranceSpawn;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class OverworldController : MonoBehaviour
         defaultPlayerSpawn = GameObject.Find("Default Player Spawn");
         forestPlayerSpawn = GameObject.Find("Forest Player Spawn");
         desertPlayerSpawn = GameObject.Find("Desert Player Spawn");
+        villageEntranceSpawn = GameObject.Find("Village Entrance Spawn");
 
         player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
@@ -34,6 +36,11 @@ public class OverworldController : MonoBehaviour
         {
             player.transform.position = forestPlayerSpawn.transform.position;
             player.transform.rotation = forestPlayerSpawn.transform.rotation;
+        } 
+        else if (playerController.GetPlayerSpawn() == PlayerController.VILLAGE_ENTRANCE_SPAWN)
+        {
+            player.transform.position = villageEntranceSpawn.transform.position;
+            player.transform.rotation = villageEntranceSpawn.transform.rotation;
         }
     }
 

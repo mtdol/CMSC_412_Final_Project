@@ -5,6 +5,7 @@ public class OverworldReturnController : MonoBehaviour
 {
     private const string DESERT_DUNGEON_NAME = "Desert Dungeon";
     private const string FOREST_DUNGEON_NAME = "Forest Dungeon";
+    private const string VILLAGE_NAME = "Village_main";
 
     void OnTriggerEnter(Collider other)
     {
@@ -19,6 +20,10 @@ public class OverworldReturnController : MonoBehaviour
             else if (SceneManager.GetActiveScene().name == FOREST_DUNGEON_NAME)
             {
                 player.GetComponent<PlayerController>().SetPlayerSpawn(PlayerController.FOREST_DUNGEON_SPAWN);
+            }
+            else if (SceneManager.GetActiveScene().name == VILLAGE_NAME)
+            {
+                player.GetComponent<PlayerController>().SetPlayerSpawn(PlayerController.VILLAGE_ENTRANCE_SPAWN);
             }
 
             SceneManager.LoadScene("OverWorld");

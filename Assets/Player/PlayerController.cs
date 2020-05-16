@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     public const int DEFAULT_OVERWORLD_SPAWN = 0;
     public const int FOREST_DUNGEON_SPAWN = 1;
     public const int DESERT_DUNGEON_SPAWN = 2;
+    public const int VILLAGE_ENTRANCE_SPAWN = 3;
 
 
     public float forwardSpeed;
