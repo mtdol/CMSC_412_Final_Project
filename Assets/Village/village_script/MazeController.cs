@@ -8,14 +8,16 @@ using UnityEngine.AI;
 
 public class MazeController : MonoBehaviour
 {
-
     public GameObject wall;
     public GameObject ground;
     public GameObject player;
    // public GameObject enemy;
     public GameObject goal;
+    public GameObject FindKeyText;
+    public GameObject MapCamera;
     public int MazeRow;
     public int MazeCol;
+    private bool MapOn;
     public System.Random rnd = new System.Random();
     //public NavMeshSurface surface;
 
@@ -28,11 +30,37 @@ public class MazeController : MonoBehaviour
         RespawnPlayer(maze);
         RespawnGoal(maze);
        // RespawnEnemy(maze);
-
-        
+        MapOn = false;
+        FindKeyText.SetActive(false);
+        MapCamera.SetActive(MapOn);
 
     
     }
+
+
+    void Update() {
+
+        if(player.transform.position.x < goal.transform.position.x + 0.4 &&
+        player.transform.position.x > goal.transform.position.x - 0.4 &&
+        player.transform.position.z < goal.transform.position.z + 0.4 && 
+        player.transform.position.z > goal.transform.position.z - 0.4 
+        ){
+            FindKeyText.SetActive(true); 
+        }
+
+        if (Input.GetKeyDown(KeyCode.M) ) {
+            if(MapOn == false){
+                MapOn = true;
+            }else{
+                MapOn = false;
+            }
+            MapCamera.SetActive(MapOn);
+        }
+
+
+        
+    }
+
 
     //generate maze as a 2D array , according to given row and columns 
     public int[,] CreateMaze(int r, int c) {

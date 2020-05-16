@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         anim = gameObject.GetComponent<Animator>();
         bowAnim = bow.GetComponent<Animator>();
         foot = GameObject.Find("KickCollider");
@@ -380,8 +381,9 @@ public class PlayerController : MonoBehaviour
         {
             HAVE_KEY = true;
             //Debug.Log("oof");
-            SceneManager.LoadScene(3);
-    
+            //findkeytext.SetActive(true);
+            Invoke("GoToVillage",2);
+              
         }
 
 
@@ -451,5 +453,10 @@ public class PlayerController : MonoBehaviour
     public bool GetDungeonAccess(int dungeon)
     {
         return dungeonAccess[dungeon];
+    }
+
+
+    public void GoToVillage(){
+        SceneManager.LoadScene(3);
     }
 }
