@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     // in the player controller
     public const int FOREST_DUNGEON = 0;
     public const int DESERT_DUNGEON = 1;
-    public static bool haveKey = false;
+
 
     // is set to true by the appropriate dungeon controller when the dungeon is beaten
     private static bool[] dungeonCompletion = {
@@ -31,6 +31,10 @@ public class PlayerController : MonoBehaviour
         // desert
         false
     };
+
+    
+    // defines access to the maze in the village
+    public static bool haveMazeKey = false;
 
     // the location in the overworld the player should spawn to,
     // defaults to these coordinates
@@ -379,7 +383,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag ("key"))
         {
-            haveKey = true;
+            haveMazeKey = true;
             //Debug.Log("oof");
             //findkeytext.SetActive(true);
             Invoke("GoToVillage",2);
