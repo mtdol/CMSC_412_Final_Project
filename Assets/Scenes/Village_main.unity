@@ -575,20 +575,20 @@ MonoBehaviour:
   - 
   FinishMaze:
   - YOU DID IT!!!
-  - 'There are monsters in the forest dungeon '
+  - 'There are monsters in the Forest Dungeon '
   - Can you help me fight them ?
-  - Here is the Key for forest dungeon.
+  - Here is the Key for Forest Dungeon.
   - You can now access Forest Dungeon
-  - 6
+  - 
   FinishForest:
-  - You beat forest dungeon!
-  - There is one more thing...Other monsters are resting in the Dessert dungeon...
+  - You beat Forest Dungeon!
+  - There is one more thing...Other monsters are still resting in the Dessert dungeon...
   - Can you eliminate them ?
   - Here is the key, be careful !
   - You can now access Dessert Dungeon
-  - d
+  - 
   FinishDessert:
-  - You beat the game!
+  - "\u266A(^\u2207^*) YOU BEAT THE GAME  ! ! !"
   - 
 --- !u!4 &289170463 stripped
 Transform:
