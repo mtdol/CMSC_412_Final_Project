@@ -14,12 +14,11 @@ public class SpeakToNPC : MonoBehaviour {
     public string[] reward;
     private int n = 0;
     private bool CanvasOn = false;
-    private bool nearbyhuh,finishhuh ,continuehuh, enableR ;
+    private bool nearbyhuh ,continuehuh, enableR ;
     
     void Start(){
         // start with canvas closed 
         canvas.SetActive(CanvasOn);
-        finishhuh = false;
         continuehuh = false; 
         nearbyhuh = false; 
         PressR.SetActive(nearbyhuh);
@@ -27,6 +26,8 @@ public class SpeakToNPC : MonoBehaviour {
         teleportPanel.SetActive(false);
         
         //Debug.Log(player.transform.position);
+
+        //controllerScript cs = player.GetComponent<PlayerController>();
        
         
     }
@@ -50,6 +51,10 @@ public class SpeakToNPC : MonoBehaviour {
 
     void Update(){ 
 
+        bool HaveKey = PlayerController.HAVE_KEY;
+
+        //Debug.Log("do i have key " + HaveKey);
+
         if (player.transform.position.x < 74 && player.transform.position.x > 66
         && player.transform.position.z < 84 && player.transform.position.z > 76){
             nearbyhuh = true;
@@ -61,7 +66,7 @@ public class SpeakToNPC : MonoBehaviour {
         // 76 84 
         
         if ( CanvasOn == true && continuehuh == true){
-            if (finishhuh == false ){
+            if (HaveKey == false ){
                 StartCoroutine(Typetask());
                 continuehuh = false;
             }else{
@@ -87,7 +92,7 @@ public class SpeakToNPC : MonoBehaviour {
             //Debug.Log("space");
             if ( reward[n] != null && task[n] != null){
                 textDisplay.text = "Villager: ";
-                if (finishhuh == false ){
+                if (HaveKey == false ){
                     StartCoroutine(Typetask());
                     n = n + 1;
                     if(n == task.Length){
@@ -95,7 +100,6 @@ public class SpeakToNPC : MonoBehaviour {
                         n = 0;
                         enableR = true;
                         continuehuh = false;
-                        finishhuh = true;
                         CanvasOn = false;
                         canvas.SetActive(CanvasOn);
                     }else{
@@ -108,7 +112,6 @@ public class SpeakToNPC : MonoBehaviour {
                         n = 0;
                         enableR = true;
                         continuehuh = false;
-                        finishhuh = true;
                         CanvasOn = false;
                         canvas.SetActive(CanvasOn);
                     }else{

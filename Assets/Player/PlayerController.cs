@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     // in the player controller
     public const int FOREST_DUNGEON = 0;
     public const int DESERT_DUNGEON = 1;
-    private static bool HAVE_KEY = false;
+    public static bool HAVE_KEY = false;
 
     // is set to true by the appropriate dungeon controller when the dungeon is beaten
     private static bool[] dungeonCompletion = {
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
 
-        Debug.Log(HAVE_KEY);
+        //Debug.Log(HAVE_KEY);
         // Detect if these keys are being held down or not
         run = Input.GetKey(KeyCode.LeftShift);
         shieldUp = Input.GetKey(KeyCode.Mouse1);
@@ -379,7 +379,7 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag ("key"))
         {
             HAVE_KEY = true;
-            Debug.Log("oof");
+            //Debug.Log("oof");
             SceneManager.LoadScene(3);
     
         }
