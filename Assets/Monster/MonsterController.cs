@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MonsterController : MonoBehaviour
@@ -44,6 +45,12 @@ public class MonsterController : MonoBehaviour
         anim = GetComponent<Animator>();
 
         player = GameObject.Find("Player");
+
+        String sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName.Contains("Dungeon"))
+        {
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
+        }
     }
 
     // Update is called once per frame
