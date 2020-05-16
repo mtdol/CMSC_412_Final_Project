@@ -24,8 +24,8 @@ public class DesertDungeonController : MonoBehaviour
 
         dungeonStatusTextController = dungeonStatusText.GetComponent<DungeonStatusTextController>();
 
-        // default no text on screen
-        dungeonStatusTextController.SetText("");
+        // set the opening message, telling the player to collect coins
+        StartCoroutine(dungeonStatusTextController.SetTextTemporary("Collect All Coins in the Dungeon", "", 5));
 
         //DEBUG
         Debug.Log("entering desert dungeon");

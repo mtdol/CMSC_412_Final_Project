@@ -5,6 +5,8 @@ using UnityEngine;
 public class DesertDungeonPickupController : MonoBehaviour
 {
     private DesertDungeonController desertDungeonController;
+
+    public float rotationSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +16,8 @@ public class DesertDungeonPickupController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // rotate
+        transform.Rotate (Vector3.up * rotationSpeed * Time.deltaTime, Space.Self);
         
     }
 
