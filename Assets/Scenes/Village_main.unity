@@ -566,19 +566,29 @@ MonoBehaviour:
   player: {fileID: 733540744}
   teleportPanel: {fileID: 524716010}
   textDisplay: {fileID: 835046113}
-  task:
-  - ' Hi brave hero! ! !'
-  - I'm so sad :(
-  - I just lost my key in the maze, can you help me find it ?
-  - Yes?! Thank you so much stranger!
-  - Good Luck on Your Adventure !!!!!
-  - Good Luck on Your Adventure !!!!!
-  reward:
-  - ' ! ! ! ! ! ? ? ? ? ?'
-  - You DID it ! !  !
-  - THANK YOU SO MUCH! ! !
-  - I can finally go home now!
-  - "\u266A(^\u2207^*)"
+  AskMaze:
+  - 'Hi warrior! '
+  - welcome home!
+  - I lost my key in the FOREST MAZE :(
+  - Can you help me find it ?
+  - Good luck on you adventure!
+  - 
+  FinishMaze:
+  - YOU DID IT!!!
+  - 'There are monsters in the forest dungeon '
+  - Can you help me fight them ?
+  - Here is the Key for forest dungeon.
+  - You can now access Forest Dungeon
+  - 6
+  FinishForest:
+  - You beat forest dungeon!
+  - There is one more thing...Other monsters are resting in the Dessert dungeon...
+  - Can you eliminate them ?
+  - Here is the key, be careful !
+  - You can now access Dessert Dungeon
+  - d
+  FinishDessert:
+  - You beat the game!
   - 
 --- !u!4 &289170463 stripped
 Transform:

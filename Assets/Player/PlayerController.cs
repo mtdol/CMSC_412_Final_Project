@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
 
     // is set to true by the appropriate dungeon controller when the dungeon is beaten
-    private static bool[] dungeonCompletion = {
+    public static bool[] dungeonCompletion = {
         // forest
         false,
         // desert
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     // the dungeons that the player has access to
     // the dungeon will block the player if the player hasn't been granted access
-    private static bool[] dungeonAccess =
+    public  static bool[] dungeonAccess =
     {
         // forest
         false,
