@@ -348,12 +348,12 @@ public class PlayerController : MonoBehaviour
         // Stuff based on whether we're strafing
         if (hAxis > 0 && vAxis == 0)
         {
-            sideMotion = strafeSpeed;
+            sideMotion = strafeSpeed * (run ? runMult : 1);
             anim.SetFloat("Strafe", Mathf.SmoothStep(anim.GetFloat("Strafe"), (run ? 1 : 0.5f), 0.2f));
         }
         else if (hAxis < 0 && vAxis == 0)
         {
-            sideMotion = strafeSpeed;
+            sideMotion = strafeSpeed * (run ? runMult : 1);
             anim.SetFloat("Strafe", Mathf.SmoothStep(anim.GetFloat("Strafe"), (run ? -1 : -0.5f), 0.2f));
         }
         else
@@ -384,7 +384,8 @@ public class PlayerController : MonoBehaviour
         Vector3 normalized = Vector3.Normalize(forwardVector + sideVector);
         normalized.z *= forwardMotion;
         normalized.x *= sideMotion;
-        transform.Translate(normalized * 1.5f * Time.deltaTime);
+        //transform.Translate(normalized * 1.5f * Time.deltaTime);
+        GetComponent<Rigidbody>().AddForce(transform.TransformDirection(normalized) * 60);
     }
 
 
