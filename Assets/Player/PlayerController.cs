@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum Weapon : int { SWORD = 0, GREATSWORD = 1, BOW = 2 };
 
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour
         // forest
         false,
         // desert
-        false,
+        false
     
     };
 
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour
         // forest
         false,
         // desert
-        false,
+        false
     };
 
     // the location in the overworld the player should spawn to,
@@ -379,6 +380,8 @@ public class PlayerController : MonoBehaviour
         {
             HAVE_KEY = true;
             Debug.Log("oof");
+            SceneManager.LoadScene(3);
+    
         }
 
 
