@@ -9,7 +9,7 @@ public class Teleport : MonoBehaviour{
 
     public void GoToDungon()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(4);
     }
 
     public void CloseTeleportPanel(){

@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Forest Dungeon.unity
     guid: 626ffd9c503cae44bb209cb4be176109
+  - enabled: 1
+    path: Assets/Scenes/Village_main.unity
+    guid: 8eb23a9b83637f44c9bf27f25315b7f4
+  - enabled: 1
+    path: Assets/Scenes/Maze.unity
+    guid: 7a9735a4d1dea634d8d75e4fa85db049
   m_configObjects: {}
