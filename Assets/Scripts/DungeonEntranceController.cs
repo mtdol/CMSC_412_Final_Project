@@ -22,7 +22,8 @@ public class DungeonEntranceController : MonoBehaviour
     Dictionary<string, int> dungeonCodes = new Dictionary<string, int>
     {
         {"Forest Dungeon Entrance", PlayerController.FOREST_DUNGEON},
-        {"Desert Dungeon Entrance", PlayerController.DESERT_DUNGEON} 
+        {"Desert Dungeon Entrance", PlayerController.DESERT_DUNGEON}, 
+        {"Village Entrance", PlayerController.VILLAGE}, 
 
     };
 

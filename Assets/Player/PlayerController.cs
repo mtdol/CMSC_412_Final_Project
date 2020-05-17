@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     // in the player controller
     public const int FOREST_DUNGEON = 0;
     public const int DESERT_DUNGEON = 1;
+    public const int VILLAGE = 2;
 
 
     // is set to true by the appropriate dungeon controller when the dungeon is beaten
@@ -18,18 +19,22 @@ public class PlayerController : MonoBehaviour
         // forest
         false,
         // desert
-        false
+        false,
+        // village, always true
+        true,
     
     };
 
     // the dungeons that the player has access to
     // the dungeon will block the player if the player hasn't been granted access
-    public  static bool[] dungeonAccess =
+    public static bool[] dungeonAccess =
     {
         // forest
         false,
         // desert
-        false
+        false,
+        // village, always true
+        true,
     };
 
     
