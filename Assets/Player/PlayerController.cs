@@ -471,6 +471,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Heal(int amount)
+    {
+        // ensure that we don't add more health than the max
+        int healthToAdd = PlayerStats.Health + amount > PlayerStats.MaxHealth ?
+            PlayerStats.MaxHealth - PlayerStats.Health : amount;
+        // add the extra health
+        PlayerStats.Health += healthToAdd;
+        // update the health display
+        playerHealthBar.value = PlayerStats.Health;
+    }
+
     private IEnumerator DeathRoutine()
     {
         yield return new WaitForSeconds(5);
