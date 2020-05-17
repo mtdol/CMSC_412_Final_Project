@@ -53,7 +53,7 @@ public class ForestDungeonController : MonoBehaviour
         playerController.SetDungeonCompletion(PlayerController.FOREST_DUNGEON, true);
 
         // set the screen, only lasts for a few seconds so use coroutine
-        StartCoroutine(dungeonStatusTextController.SetTextTemporary("Dungeon Complete", "", 5));
+        StartCoroutine(dungeonStatusTextController.SetTextTemporary("Dungeon Complete, Return to the Village", "", 5));
         
         //DEBUG
         Debug.Log("Dungeon Status: " + playerController.GetDungeonCompletion(PlayerController.FOREST_DUNGEON));
