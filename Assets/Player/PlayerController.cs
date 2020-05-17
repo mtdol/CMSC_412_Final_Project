@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.Playables;
 
 public enum Weapon : int { SWORD = 0, GREATSWORD = 1, BOW = 2 };
 
@@ -67,13 +68,13 @@ public class PlayerController : MonoBehaviour
     private GameObject currentArrow, foot;
     private Weapon weapon;
 
-    private int health;
+    //private static int health;
 
     private bool attack, jump, run, shieldUp, aim, quickTurn; // Bools for actions the player can do
     private bool switchWeapon; // Weapon switching
-    private bool isDead;
+    private bool isDead, selfDestruct;
     private float quickTurnTimer;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -90,12 +91,20 @@ public class PlayerController : MonoBehaviour
         weapon = Weapon.SWORD;
         quickTurnTimer = 0;
 
-        health = maxHealth;
+        if (PlayerStats.MaxHealth == 0)
+        {
+            PlayerStats.MaxHealth = maxHealth;
+        }
+
+        if (PlayerStats.Health == 0)
+        {
+            PlayerStats.Health = PlayerStats.MaxHealth;
+        }
 
         if (playerHealthBar != null)
         {
-            playerHealthBar.maxValue = maxHealth;
-            playerHealthBar.value = health;
+            playerHealthBar.maxValue = PlayerStats.MaxHealth;
+            playerHealthBar.value = PlayerStats.Health;
         }
 
         SwordController swordController = sword.GetComponentInChildren<SwordController>();
@@ -152,6 +161,11 @@ public class PlayerController : MonoBehaviour
                 quickTurnTimer = 0;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            selfDestruct = true;
+        }
     }
 
     void FixedUpdate()
@@ -159,6 +173,12 @@ public class PlayerController : MonoBehaviour
         if (isDead)
         {
             return;
+        }
+
+        if (selfDestruct)
+        {
+            selfDestruct = false;
+            Damage(maxHealth);
         }
 
         // Use these to get the names of whatever animation/transition we're in
@@ -428,10 +448,11 @@ public class PlayerController : MonoBehaviour
     {
         if (!shieldUp)
         {
-            health = Mathf.Max(health - damageAmount, 0);
+            PlayerStats.Health = Mathf.Max(PlayerStats.Health - damageAmount, 0);
         }
 
-        if (!isDead && health == 0)
+        //if (!isDead && health == 0)
+        if (!isDead && PlayerStats.Health == 0)
         {
             isDead = true;
 
@@ -446,7 +467,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (!isDead && playerHealthBar != null)
         {
-            playerHealthBar.value = health;
+            playerHealthBar.value = PlayerStats.Health;
         }
     }
 
@@ -468,17 +489,8 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        PlayerStats.Health = PlayerStats.MaxHealth;
         SceneManager.LoadScene("OverWorld");
-    }
-
-    public int GetHealth()
-    {
-        return health;
-    }
-
-    public void SetHealth(int h)
-    {
-        health = h;
     }
 
     // sets the given dungeon's completion status using the dungeon codes defined above

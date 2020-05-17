@@ -47,7 +47,7 @@ public class MonsterController : MonoBehaviour
         player = GameObject.Find("Player");
 
         String sceneName = SceneManager.GetActiveScene().name;
-        if (sceneName.Contains("Dungeon"))
+        if (sceneName.Equals("Desert Dungeon"))
         {
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
         }
@@ -134,6 +134,8 @@ public class MonsterController : MonoBehaviour
         if (health == 0 && !isDead)
         {
             isDead = true;
+            leftHand.GetComponent<BoxCollider>().enabled = false;
+            rightHand.GetComponent<BoxCollider>().enabled = false;
             Destroy(healthBar.gameObject);
             anim.SetTrigger("Death");
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
