@@ -9,7 +9,7 @@ using UnityEngine.AI;
 public class MazeController : MonoBehaviour
 {
     public GameObject wall;
-    public GameObject ground;
+    //public GameObject ground;
     public GameObject player;
    // public GameObject enemy;
     public GameObject goal;
@@ -110,7 +110,7 @@ public class MazeController : MonoBehaviour
             {   
                 
                 // generate ground
-                GameObject g = (GameObject)(Instantiate (ground, new Vector3(i,0,j), Quaternion.identity));
+                //GameObject g = (GameObject)(Instantiate (ground, new Vector3(i,0,j), Quaternion.identity));
                 // generate maze wall 
                 if (maze[i, j] == 1)
                 {
