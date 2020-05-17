@@ -24,7 +24,6 @@ public class SpeakToNPC : MonoBehaviour {
         PressR.SetActive(nearbyhuh);
         enableR = true;
         teleportPanel.SetActive(false);
-        
         //Debug.Log(player.transform.position);
 
         //controllerScript cs = player.GetComponent<PlayerController>();
@@ -36,7 +35,7 @@ public class SpeakToNPC : MonoBehaviour {
     IEnumerator Typetask(){
         foreach(char letter in AskMaze[n].ToCharArray()){
             textDisplay.text =  textDisplay.text + letter;
-            yield return new WaitForSeconds(0.03f);
+            yield return new WaitForSeconds(0.008f);
             
         }
     }
@@ -44,23 +43,20 @@ public class SpeakToNPC : MonoBehaviour {
      IEnumerator Typereward(){
         foreach(char letter in FinishMaze[n].ToCharArray()){
             textDisplay.text =  textDisplay.text + letter;
-            yield return new WaitForSeconds(0.03f);
-            
+            yield return new WaitForSeconds(0.008f);
         }
     }
 
      IEnumerator TypeForest(){
         foreach(char letter in FinishForest[n].ToCharArray()){
             textDisplay.text =  textDisplay.text + letter;
-            yield return new WaitForSeconds(0.03f);
-            
+            yield return new WaitForSeconds(0.008f);
         }
     }
          IEnumerator TypeDessert(){
         foreach(char letter in FinishDessert[n].ToCharArray()){
             textDisplay.text =  textDisplay.text + letter;
-            yield return new WaitForSeconds(0.03f);
-            
+            yield return new WaitForSeconds(0.008f);
         }
     }
 
@@ -113,7 +109,6 @@ public class SpeakToNPC : MonoBehaviour {
         //press space to continue the conversation 
         if (Input.GetKeyDown(KeyCode.Y)) {
             //Debug.Log(n);
-
             //Debug.Log("space");
             if ( FinishMaze[n] != null && AskMaze[n] != null){
                 textDisplay.text = "Villager: ";
