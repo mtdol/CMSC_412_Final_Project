@@ -76,8 +76,8 @@ public class SpeakToNPC : MonoBehaviour {
 
         //Debug.Log("do i have key " + HaveKey);
 
-        if (player.transform.position.x < 74 && player.transform.position.x > 66
-        && player.transform.position.z < 84 && player.transform.position.z > 76){
+        if (player.transform.position.x < 308 && player.transform.position.x > 301
+        && player.transform.position.z < 444 && player.transform.position.z > 436){
             nearbyhuh = true;
         }else{
             nearbyhuh =false;
