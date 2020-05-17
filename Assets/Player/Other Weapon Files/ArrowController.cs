@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class ArrowController : MonoBehaviour
@@ -22,7 +23,9 @@ public class ArrowController : MonoBehaviour
                 rb.freezeRotation = true;
                 rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
 
-                print("made rigidbody");
+                transform.Rotate(new Vector3(9, 12, 0));
+
+                StartCoroutine(TimeoutThread());
             }
 
             // Move forward
@@ -43,5 +46,12 @@ public class ArrowController : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator TimeoutThread()
+    {
+        yield return new WaitForSeconds(10);
+
+        Destroy(gameObject);
     }
 }

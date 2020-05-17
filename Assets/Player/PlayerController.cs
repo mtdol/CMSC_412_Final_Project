@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public enum Weapon : int { SWORD = 0, GREATSWORD = 1, BOW = 2 };
 
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
     public float runMult;
     public int maxHealth;
     public Slider playerHealthBar;
+    public Image deathFadeImage;
 
     private Animator anim, bowAnim;
 
@@ -420,8 +422,6 @@ public class PlayerController : MonoBehaviour
             Invoke("GoToVillage",2);
               
         }
-
-
     }
 
     private void Damage(int damageAmount)
@@ -442,11 +442,43 @@ public class PlayerController : MonoBehaviour
 
             // Die
             anim.CrossFade("Death", 0.3f);
+            StartCoroutine(DeathRoutine());
         }
         else if (!isDead && playerHealthBar != null)
         {
             playerHealthBar.value = health;
         }
+    }
+
+    private IEnumerator DeathRoutine()
+    {
+        yield return new WaitForSeconds(5);
+
+        if (deathFadeImage != null)
+        {
+            float fade = 0;
+            GameObject canvas = GameObject.Find("Canvas");
+            Image deathFade = Instantiate(deathFadeImage, canvas.transform);
+
+            while (fade < 1f)
+            {
+                fade += 0.02f;
+                deathFade.color = new Color(0f, 0f, 0f, fade);
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
+        SceneManager.LoadScene("OverWorld");
+    }
+
+    public int GetHealth()
+    {
+        return health;
+    }
+
+    public void SetHealth(int h)
+    {
+        health = h;
     }
 
     // sets the given dungeon's completion status using the dungeon codes defined above

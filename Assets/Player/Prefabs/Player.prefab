@@ -2194,6 +2194,8 @@ MonoBehaviour:
   runMult: 3
   maxHealth: 0
   playerHealthBar: {fileID: 0}
+  deathFadeImage: {fileID: 235975639118771838, guid: 9fab8eadcb365b3409e7907108f4af67,
+    type: 3}
   sword: {fileID: 1906340987606444479}
   greatsword: {fileID: 3136139849628773888}
   shield: {fileID: 7662714290695439198}

@@ -365,7 +365,7 @@ Terrain:
   m_DrawInstanced: 0
   m_DrawTreesAndFoliage: 1
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 10652, guid: 0000000000000000f000000000000000, type: 0}
+  m_MaterialTemplate: {fileID: 2100000, guid: 574bea866d658964fa2b5d738ba64919, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
@@ -557,12 +557,12 @@ PrefabInstance:
     - target: {fileID: 2407528522463884956, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: m_Constraints
-      value: 80
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 2407528522463884956, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: m_Mass
-      value: 50
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
