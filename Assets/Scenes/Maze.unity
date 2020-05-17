@@ -468,6 +468,11 @@ PrefabInstance:
       propertyPath: findkeytext
       value: 
       objectReference: {fileID: 1405890014}
+    - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6386858254292792282, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: m_Name
