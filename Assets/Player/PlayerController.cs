@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // Detect if these keys are being held down or not
-        run = Input.GetKey(KeyCode.LeftShift);
+        run = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         shieldUp = Input.GetKey(KeyCode.Mouse1);
         aim = Input.GetKey(KeyCode.Mouse0) && (weapon == Weapon.BOW);
 

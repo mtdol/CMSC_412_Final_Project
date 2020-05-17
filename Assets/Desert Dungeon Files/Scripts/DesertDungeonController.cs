@@ -46,6 +46,11 @@ public class DesertDungeonController : MonoBehaviour
         {
             WinDungeon();
         }
+        else if (pickupsRequired - pickupsCollected == 3)
+        {
+            // notify the player they are almost done
+            StartCoroutine(dungeonStatusTextController.SetTextTemporary("Only 3 Amulets Remain", "", 5));
+        }
     }
 
     private void WinDungeon()
