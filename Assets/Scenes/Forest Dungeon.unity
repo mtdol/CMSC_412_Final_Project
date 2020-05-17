@@ -2140,17 +2140,17 @@ PrefabInstance:
     - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: forwardSpeed
-      value: 32
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: backwardSpeed
-      value: 25
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: strafeSpeed
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2407528524277083649, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
