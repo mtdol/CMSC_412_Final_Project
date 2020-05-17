@@ -6321,6 +6321,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2407528522463884956, guid: 523715d1e0014bc499909209cab96e4c,
+        type: 3}
+      propertyPath: m_Mass
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: terrain
@@ -6329,17 +6334,17 @@ PrefabInstance:
     - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: forwardSpeed
-      value: 4
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: backwardSpeed
-      value: 2
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: strafeSpeed
-      value: 3.5
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
@@ -6365,7 +6370,7 @@ PrefabInstance:
     - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: maxHealth
-      value: 3
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2407528524277083649, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
