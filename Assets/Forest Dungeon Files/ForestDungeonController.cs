@@ -12,7 +12,7 @@ public class ForestDungeonController : MonoBehaviour
 
     // the text display for the dungeon
     public Text dungeonStatusText;
-    private DungeonStatusTextController dungeonStatusTextController;
+    private StatusTextController dungeonStatusTextController;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class ForestDungeonController : MonoBehaviour
         player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
 
-        dungeonStatusTextController = dungeonStatusText.GetComponent<DungeonStatusTextController>();
+        dungeonStatusTextController = dungeonStatusText.GetComponent<StatusTextController>();
 
         // set the opening message, telling the player to collect coins
         StartCoroutine(dungeonStatusTextController.SetTextTemporary("Collect All Coins in the Dungeon", "", 5));

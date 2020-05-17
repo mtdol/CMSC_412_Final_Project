@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class OverworldController : MonoBehaviour
 {
 
     private GameObject player;
     private PlayerController playerController;
+
+    public Text statusText;
 
     // these are the places in the world the player can spawn at
     private GameObject defaultPlayerSpawn;
@@ -56,6 +59,11 @@ public class OverworldController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public Text GetStatusText()
+    {
+        return statusText;
     }
 
 }

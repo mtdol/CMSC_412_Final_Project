@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DungeonStatusTextController : MonoBehaviour
+public class StatusTextController : MonoBehaviour
 {
     private Text text;
     // Start is called before the first frame update

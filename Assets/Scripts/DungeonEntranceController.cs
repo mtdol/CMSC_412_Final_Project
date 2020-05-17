@@ -27,12 +27,30 @@ public class DungeonEntranceController : MonoBehaviour
 
     };
 
+    private OverworldController overworldController;
+
+    void Start()
+    {
+        overworldController = GameObject.Find("Overworld Manager").GetComponent<OverworldController>();
+    }
+
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && PlayerHasDungeonKey(other.gameObject))
+        if (other.CompareTag("Player"))
         {
-            // loads the appropriate scene using the dictionary above
-            SceneManager.LoadScene(locations[this.gameObject.name]);
+            if (PlayerHasDungeonKey(other.gameObject))
+            {
+                // loads the appropriate scene using the dictionary above
+                SceneManager.LoadScene(locations[this.gameObject.name]);
+            }
+            else
+            {
+                // the player needs the key
+                StartCoroutine(
+                    overworldController.GetStatusText().GetComponent<StatusTextController>().
+                        SetTextTemporary("This Dungeon is locked, come back with a key from the village","",5)
+                    );
+            }
         }
         
     }
