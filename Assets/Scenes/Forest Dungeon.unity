@@ -2109,7 +2109,7 @@ PrefabInstance:
     - target: {fileID: 2407528522463884956, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
       propertyPath: m_Mass
-      value: 1
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
@@ -2136,6 +2136,21 @@ PrefabInstance:
         type: 3}
       propertyPath: rotationSpeed
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
+        type: 3}
+      propertyPath: forwardSpeed
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
+        type: 3}
+      propertyPath: backwardSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407528522463884958, guid: 523715d1e0014bc499909209cab96e4c,
+        type: 3}
+      propertyPath: strafeSpeed
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2407528524277083649, guid: 523715d1e0014bc499909209cab96e4c,
         type: 3}
