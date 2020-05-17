@@ -567,24 +567,24 @@ MonoBehaviour:
   teleportPanel: {fileID: 524716010}
   textDisplay: {fileID: 835046113}
   AskMaze:
-  - 'Hi warrior! '
-  - welcome home!
-  - I lost my key in the FOREST MAZE :(
+  - Welcome Warrior!
+  - Welcome to our village!
+  - I lost my key in the FOREST MAZE.
   - Can you help me find it ?
   - Good luck on you adventure!
   - 
   FinishMaze:
   - YOU DID IT!!!
-  - 'There are monsters in the Forest Dungeon '
+  - There are coins in the Forest Dungeon. They are gaurded by monsters..
   - Can you help me fight them ?
   - Here is the Key for Forest Dungeon.
   - You can now access Forest Dungeon
   - 
   FinishForest:
-  - You beat Forest Dungeon!
-  - There is one more thing...Other monsters are still resting in the Dessert dungeon...
-  - Can you eliminate them ?
-  - Here is the key, be careful !
+  - You beat the Forest Dungeon!
+  - There is one more thing...There are other coins in the Desert dungeon...
+  - Can you help me get these coins?
+  - Here is the key, be careful!
   - You can now access Dessert Dungeon
   - 
   FinishDessert:
