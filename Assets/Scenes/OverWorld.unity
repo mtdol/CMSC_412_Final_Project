@@ -9568,7 +9568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statusText: {fileID: 1127833470}
-  SpawnPlayerInitiallyAtTestLocation: 1
+  SpawnPlayerInitiallyAtTestLocation: 0
 --- !u!1 &1826178760
 GameObject:
   m_ObjectHideFlags: 0
