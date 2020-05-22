@@ -61,6 +61,9 @@ public class PlayerController : MonoBehaviour
     public int maxHealth;
     public Slider playerHealthBar;
     public Image deathFadeImage;
+    
+    // the speed that one can rotate with the keys
+    public float keyRotationSpeed;
 
     private Animator anim, bowAnim;
 
@@ -128,7 +131,7 @@ public class PlayerController : MonoBehaviour
         // Detect if these keys are being held down or not
         run = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         shieldUp = Input.GetKey(KeyCode.Mouse1);
-        aim = Input.GetKey(KeyCode.Mouse0) && (weapon == Weapon.BOW);
+        aim = (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Return)) && (weapon == Weapon.BOW);
 
         // Increment the double-tap timer for quick-turning
         quickTurnTimer = Mathf.Max(quickTurnTimer - Time.deltaTime, 0);
@@ -139,7 +142,7 @@ public class PlayerController : MonoBehaviour
             jump = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !jump)
+        if (((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Return))) && !jump)
         {
             attack = true;
         }
@@ -207,7 +210,8 @@ public class PlayerController : MonoBehaviour
                 }
 
                 // If we're aiming, we still want to be allowed to turn
-                float mouseHorizontal = Input.GetAxis("Mouse X");
+                float mouseHorizontal = Input.GetAxis("Mouse X") + GetKeyRotation();
+
                 if (Mathf.Abs(mouseHorizontal) > 0.1f)
                 {
                     Rotate(mouseHorizontal);
@@ -345,6 +349,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private float GetKeyRotation()
+    {
+        float rotate = 0;
+        // also allow the , and . keys to rotate
+        if (Input.GetKey(KeyCode.Period))
+        {
+            rotate += keyRotationSpeed;
+        }
+        else if (Input.GetKey(KeyCode.Comma))
+        {
+            rotate -= keyRotationSpeed;
+        }
+        return rotate;
+    }
+
 
     
     private void HandleMovement()
@@ -352,8 +371,23 @@ public class PlayerController : MonoBehaviour
         // Get input
         float hAxis = Input.GetAxis("Horizontal");
         float vAxis = Input.GetAxis("Vertical");
-        float mouseHorizontal = Input.GetAxis("Mouse X");
+        float mouseHorizontal = Input.GetAxis("Mouse X") + GetKeyRotation();
         float forwardMotion, sideMotion;
+
+        // allow the player to customize the rotation speed in game
+        if (Input.GetKeyDown(KeyCode.LeftBracket))
+        {
+            keyRotationSpeed -= 0.5f * Time.fixedDeltaTime;
+        }
+        else if (Input.GetKeyDown(KeyCode.RightBracket))
+        {
+            keyRotationSpeed += 0.5f * Time.fixedDeltaTime;
+        }
+        if (keyRotationSpeed < 0)
+        {
+            // ensure the user can't reverse the rotation
+            keyRotationSpeed = 0;
+        }
 
         // Stuff based on whether we're going forward or backward
         if (vAxis > 0)
